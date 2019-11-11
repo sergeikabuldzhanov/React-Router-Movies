@@ -1,7 +1,16 @@
 import React from 'react';
 
 const MovieCard = props => {
+  const [id, setId] = React.useState();
+
+  React.useEffect(()=>{
+    setId(props.movie.id);
+  }, [id]);
+
   const { title, director, metascore, stars } = props.movie;
+  
+  if(!id) return <div></div>;
+
   return (
     <div className="movie-card">
       <h2>{title}</h2>

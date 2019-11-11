@@ -5,12 +5,9 @@ import MovieCard from './MovieCard';
 
 const Movie = (props) => {
   const [movie, setMovie] = useState();
-  console.log(movie);
-  
+
   useEffect(() => {
-    const id = props.match.params.id;
-    console.log(id);
-    
+    const id = props.match.params.id;    
     // change ^^^ that line and grab the id from the URL
     // You will NEED to add a dependency array to this effect hook
 
@@ -26,16 +23,21 @@ const Movie = (props) => {
   },[]);
   
   // Uncomment this only when you have moved on to the stretch goals
-  // const saveMovie = () => {
-  //   const addToSavedList = props.addToSavedList;
-  //   addToSavedList(movie)
-  // }
+  const saveMovie = () => {
+    const addToSavedList = props.addToSavedList;
+    addToSavedList(movie)
+  }
 
   if (!movie) {
     return <div>Loading movie information...</div>;
   }
 
-  return <MovieCard movie = {movie}/>
+  return (
+  <div className = "save-wrapper">
+    <MovieCard movie = {movie} key = {movie.id}/>
+    <div className = "save-button" onClick = {e=>props.addToSavedList(movie)}>Save</div>
+  </div>
+  )
 }
 
 export default Movie;
