@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import {Route, Link} from 'react-router-dom';
+import {Route, Link, Switch} from 'react-router-dom';
 import MovieList from './Movies/MovieList';
 import MovieCard from './Movies/MovieCard';
 import Movie from './Movies/Movie';
+
 
 
 import SavedList from './Movies/SavedList';
 
 const App = () => {
   const [savedList, setSavedList] = useState( [] );
+  const [currentMovie, setCurrentMovie] = useState();
 
   const addToSavedList = movie => {
     setSavedList( [...savedList, movie] );
